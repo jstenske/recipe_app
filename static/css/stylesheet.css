@@ -3,9 +3,6 @@ label.print{
   font-weight: bold;
 }
 .logo {
-  text-indent: -99999px;
-  background url("Hawkeye Recipe App.png");
-  width: 960px;
-  height: 148px;
+  width: 100px;
 }
-.container {color: aqua;}
+.container {color: rgb(255, 238, 0);}
