@@ -126,7 +126,7 @@ def about():
     return render_template('about.html')
 
 # unauthenticated users can see a message on the registration page
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         form = request.form
