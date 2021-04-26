@@ -2,3 +2,9 @@ label.print{
   font-style: italic;
   font-weight: bold;
 }
+.logo {
+  text-indent: -99999px;
+  background url("Hawkeye Recipe App.png");
+  width: 960px;
+  height: 148px;
+}
