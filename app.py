@@ -355,6 +355,7 @@ def add_recipe():
             'notes': form['notes'],
             'recipe_owner': form['recipe_owner'],
             'added_by': form['added_by'],
+            'estimated_cost': form['estimated_cost'],
             'date_added': datetime.datetime.now(),
             'date_modified': datetime.datetime.now()
         }
