@@ -6,4 +6,48 @@ label.print{
   width: 400px;
   
 }
-.bgcolor {background-color: yellow;}
+
+label.print{
+  font-style: italic;
+  font-weight: bold;
+}
+
+.navbar-dar .navbar-nav .nav-link{
+  color: gold
+}
+.btn-outline-success{
+  color:gold;
+  border-color:gold
+}
+
+.btn-outline-success:hover, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active, .open>.dropdown-toggle.btn-primary {
+  color:white
+  background-color:gold;
+  border-color:white;
+
+}
+
+.btn-outline-success:not(:disabled):not(:disabled):active{
+  color:white;
+  background-color:gold;
+  border-color:white;
+}
+
+.btn-primary{
+  color:white;
+  background-color:gold;
+  border-color:white;
+}
+
+.btn-outline-success:hover, .btn-outline-success:focus, .btn-outline-success:active, .open>.dropdown-toggle.btn-primary {
+  color:white;
+  background-color:gold;
+  border-color:white;
+
+}
+
+.btn-outline-success:not(:disabled):not(:disabled):active{
+  color:white;
+  background-color:gold;
+  border-color:white;
+}
