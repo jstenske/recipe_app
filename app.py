@@ -5,11 +5,13 @@ import datetime
 from bson.objectid import ObjectId
 from flask import Flask, request, render_template, redirect, url_for, session, flash
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
-import bcrypt
+from flask_bcrypt import Bcrypt
 from functools import wraps
+from momentjs import momentjs
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+bcrypt = Bcrypt(app)
 
 ############ TO DO #############
 
@@ -141,7 +143,7 @@ def register():
         form = request.form
         
         password = request.form['password']
-        
+        pwd_hash = bcrypt.generate_password_hash(password)
         email = users.find_one({"email": request.form['email']})
         if email:
             flash('This email is already registered.', 'warning')
@@ -150,7 +152,7 @@ def register():
             'first_name': form['first_name'],
             'last_name': form['last_name'],
             'email': form['email'],
-            'password': password,
+            'password': pwd_hash,
             'role': form['role'],
             'date_added': datetime.datetime.now(),
             'date_modified': datetime.datetime.now()
@@ -168,7 +170,7 @@ def login():
 
     if request.method == 'POST':
         user = users.find_one({"email": request.form['username']})
-        if user and user['password'] == request.form['password']:
+        if user and bcrypt.check_password_hash(user['password'], request.form['password']):
             user_obj = User(username=user['email'], role=user['role'], id=user['_id'])
             login_user(user_obj)
             next_page = request.args.get('next')
@@ -209,13 +211,14 @@ def update_myaccount(user_id):
         form = request.form
 
         password = request.form['password']
+        pwd_hash = bcrypt.generate_password_hash(password)
 
         users.update({'_id': ObjectId(user_id)},
             {
             'first_name': form['first_name'],
             'last_name': form['last_name'],
             'email': form['email'],
-            'password': password,
+            'password': pwd_hash,
             'role': form['role'],
             'date_added': form['date_added'],
             'date_modified': datetime.datetime.now()
@@ -242,7 +245,7 @@ def admin_add_user():
         form = request.form
         
         password = request.form['password']
-        
+        pwd_hash = bcrypt.generate_password_hash(password)
         email = users.find_one({"email": request.form['email']})
         if email:
             flash('This email is already registered.', 'warning')
@@ -251,7 +254,7 @@ def admin_add_user():
             'first_name': form['first_name'],
             'last_name': form['last_name'],
             'email': form['email'],
-            'password': password,
+            'password': pwd_hash,
             'role': form['role'],
             'date_added': datetime.datetime.now(),
             'date_modified': datetime.datetime.now()

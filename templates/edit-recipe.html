@@ -38,7 +38,14 @@
                 {% endfor %}
             </div>
         </div>
-    
+        <div class="form-group">
+            <label for="estimated_cost"> Estimated Cost: </label>
+            <textarea id="estimated_cost" name="estimated_cost" class="form-control notes" rows="15">
+                {{ recipe['estimated_cost'] }}
+            </textarea>
+        </div>
+        
+        
 
    
         <div id="TextBoxesGroupPreparation" class="form-group">
